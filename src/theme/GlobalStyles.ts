@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import palette from './palette';
 
 const GlobalStyle = createGlobalStyle`
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -24,6 +25,7 @@ html {
  * Remove the margin in all browsers.
  */
 body {
+	background: ${palette.darkBlue};
   margin: 0;
 }
 /**
