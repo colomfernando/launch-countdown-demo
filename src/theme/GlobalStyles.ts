@@ -13,7 +13,7 @@ html {
   line-height: 1; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 	box-sizing: border-box;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: 'Lato', sans-serif;
 }
 *, *:before, *:after {
