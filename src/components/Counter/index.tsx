@@ -10,6 +10,8 @@ export interface Remain {
   seconds: number;
 }
 
+type RemainKey = keyof Remain;
+
 const Counter: React.FC = () => {
   const [remain, setRemain] = useState<Remain>({
     days: 0,
@@ -25,6 +27,12 @@ const Counter: React.FC = () => {
     setRemain(dataRemain);
   };
 
+  const isRemainEnd = (data: Remain) => {
+    const hasValues = Object.values(data).filter(Boolean);
+    if (!hasValues.length) return true;
+    return false;
+  };
+
   useEffect(() => {
     const interval: ReturnType<typeof setInterval> = setInterval(() => {
       countDown();
@@ -35,10 +43,14 @@ const Counter: React.FC = () => {
 
   return (
     <Styles.Wrapper>
-      <Styles.Value value={Number(remain.days)} label="days" />
-      <Styles.Value value={Number(remain.hours)} label="hours" />
-      <Styles.Value value={Number(remain.minutes)} label="minutes" />
-      <Styles.Value value={Number(remain.seconds)} label="days" />
+      {!isRemainEnd(remain) &&
+        Object.keys(remain).map((data) => (
+          <Styles.Value
+            key={data}
+            value={remain[data as RemainKey]}
+            label={data}
+          />
+        ))}
     </Styles.Wrapper>
   );
 };
